@@ -27,13 +27,12 @@
 #include "mem.h"
 
 typedef struct mg_packet_s {
-	uint16_t id; /* packet_id */
-	uint16_t size; /* packet size */
+	int32_t id; /* packet_id */
+	int32_t size; /* packet size */
 	void *buff; /* packet buffers, linked list */
 } mg_packet_t;
 
-mg_packet_t *mg_parse_pkt(mg_mem_t *buff) {
-	mg_memstate_t state = mg_mem_snapshot(buff);
-}
-
+uint32_t mg_read_varint(mg_mem_t *mem);
+uint64_t mg_read_varlong(mg_mem_t *mem);
+mg_packet_t *mg_parse_pkt(mg_mem_t *buff);
 #endif /* _PACKET_H_ */
